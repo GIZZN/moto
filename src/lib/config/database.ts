@@ -53,13 +53,29 @@ export const getEnvVar = (names: string[]): string | undefined => {
 
 // Получение переменных окружения для базы данных
 export const getDatabaseConfig = () => {
+  // Проверка, находимся ли мы в процессе сборки
+  const isBuildTime = process.env.NEXT_PHASE === 'phase-production-build' || 
+                      process.env.NEXT_PHASE === 'phase-export' ||
+                      !process.env.NODE_ENV;
+
   const POSTGRES_USER = getEnvVar(['POSTGRES_USER', 'DB_USER']);
   const POSTGRES_PASSWORD = getEnvVar(['POSTGRES_PASSWORD', 'DB_PASSWORD']);
   const POSTGRES_DATABASE = getEnvVar(['POSTGRES_DATABASE', 'DB_NAME']);
   const POSTGRES_HOST = getEnvVar(['POSTGRES_HOST', 'DB_HOST']);
   const POSTGRES_PORT = getEnvVar(['POSTGRES_PORT', 'DB_PORT']);
 
-  // Проверка обязательных переменных окружения
+  // Во время сборки возвращаем заглушки
+  if (isBuildTime) {
+    return {
+      user: POSTGRES_USER || 'build_user',
+      password: POSTGRES_PASSWORD || 'build_pass',
+      database: POSTGRES_DATABASE || 'build_db',
+      host: POSTGRES_HOST || 'localhost',
+      port: parseInt(POSTGRES_PORT || '5432'),
+    };
+  }
+
+  // Проверка обязательных переменных окружения только в runtime
   if (!POSTGRES_USER) {
     throw new Error('POSTGRES_USER (или DB_USER) не задан в переменных окружения');
   }

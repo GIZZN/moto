@@ -2,6 +2,11 @@ import { QueryResult } from 'pg';
 import { query } from './queries';
 import { dbLogger, DB_LOGGING } from '../config/database';
 
+// Проверка, находимся ли мы в процессе сборки
+const isBuildTime = process.env.NEXT_PHASE === 'phase-production-build' || 
+                    process.env.NEXT_PHASE === 'phase-export' ||
+                    !process.env.NODE_ENV;
+
 // Функция для тестирования соединения
 export async function testConnection(): Promise<boolean> {
   try {
@@ -20,8 +25,8 @@ export async function testConnection(): Promise<boolean> {
   }
 }
 
-// Проверка подключения при инициализации (только если включено тестирование)
-if (DB_LOGGING.testConnection) {
+// Проверка подключения при инициализации (только если включено тестирование и не в процессе сборки)
+if (DB_LOGGING.testConnection && !isBuildTime) {
   testConnection().then((connected) => {
     if (!connected) {
       dbLogger.error('БАЗА ДАННЫХ НЕ ПОДКЛЮЧЕНА!');
