@@ -1,0 +1,417 @@
+.container {
+  min-height: 100vh;
+  background: #0a0e15;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.authPage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #0a0e15;
+  position: relative;
+  z-index: 1;
+}
+
+.authPage::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(252, 150, 101, 0.15) 0%, transparent 70%);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+}
+
+.authContainer {
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  z-index: 2;
+}
+
+.authCard {
+  background: rgba(21, 25, 33, 0.8);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: relative;
+}
+
+.authCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FC9665, #F65C85, transparent);
+}
+
+.logoSection {
+  background: linear-gradient(135deg, rgba(252, 150, 101, 0.1) 0%, rgba(246, 92, 133, 0.1) 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.logoSection::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(252, 150, 101, 0.2), transparent);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.logoIcon {
+  width: 70px;
+  height: 70px;
+  background: rgba(10, 14, 21, 0.6);
+  border: 2px solid rgba(252, 150, 101, 0.5);
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: #FC9665;
+  filter: drop-shadow(0 0 20px rgba(252, 150, 101, 0.5));
+  position: relative;
+  z-index: 2;
+}
+
+.logoSection h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: white;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 0%, #FC9665 50%, #F65C85 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 2;
+}
+
+.logoSection p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+
+.formSection {
+  padding: 2.5rem;
+  background: rgba(10, 14, 21, 0.4);
+}
+
+.formSection h2 {
+  margin: 0 0 2rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.errorMessage {
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  color: #ff6b6b;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inputGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+  font-size: 0.875rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.inputGroup label svg {
+  color: #FC9665;
+}
+
+.inputField {
+  padding: 1rem 1.25rem;
+  background: rgba(10, 14, 21, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  font-size: 1rem;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: all 0.3s ease;
+  color-scheme: dark;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #FC9665;
+  background: rgba(10, 14, 21, 0.95);
+  box-shadow: 0 0 0 4px rgba(252, 150, 101, 0.2), 0 0 20px rgba(252, 150, 101, 0.3);
+}
+
+.inputField::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.inputError {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3) !important;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2), 0 0 20px rgba(239, 68, 68, 0.4) !important;
+}
+
+.fieldError {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+}
+
+.submitButton {
+  background: linear-gradient(135deg, #FC9665 0%, #F65C85 100%);
+  color: white;
+  border: none;
+  padding: 1.25rem 2rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1.5rem;
+  box-shadow: 0 8px 30px rgba(252, 150, 101, 0.4);
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 100%, 0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.submitButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #F65C85 0%, #FC9665 100%);
+  transition: left 0.4s ease;
+  z-index: 0;
+}
+
+.submitButton:hover:not(:disabled)::before {
+  left: 0;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-3px) translateX(5px);
+  box-shadow: 0 15px 50px rgba(246, 92, 133, 0.6);
+}
+
+.submitButton > * {
+  position: relative;
+  z-index: 1;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.authPrompt {
+  margin-top: 2rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.authPrompt::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FC9665, transparent);
+}
+
+.authPrompt p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.authPrompt a {
+  color: #FC9665;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.authPrompt a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #FC9665, #F65C85);
+  transition: width 0.3s ease;
+}
+
+.authPrompt a:hover {
+  color: #F65C85;
+}
+
+.authPrompt a:hover::after {
+  width: 100%;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .authPage {
+    padding: 1rem;
+  }
+
+  .authPage::before {
+    width: 400px;
+    height: 400px;
+  }
+
+  .logoSection {
+    padding: 2rem 1.5rem;
+  }
+
+  .logoIcon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logoSection h1 {
+    font-size: 2rem;
+  }
+
+  .logoSection p {
+    font-size: 0.75rem;
+  }
+
+  .formSection {
+    padding: 2rem 1.5rem;
+  }
+
+  .formSection h2 {
+    font-size: 1.25rem;
+  }
+
+  .submitButton {
+    padding: 1.125rem 1.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .authPage {
+    padding: 0.5rem;
+  }
+
+  .authPage::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .logoSection {
+    padding: 1.5rem 1rem;
+  }
+
+  .logoIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logoSection h1 {
+    font-size: 1.75rem;
+  }
+
+  .formSection {
+    padding: 1.5rem 1rem;
+  }
+
+  .formSection h2 {
+    font-size: 1.125rem;
+  }
+
+  .authCard {
+    margin: 0;
+  }
+
+  .submitButton {
+    padding: 1rem 1.25rem;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 0 100%);
+  }
+}

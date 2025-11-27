@@ -1,0 +1,841 @@
+/* Премиальный дизайн тест-драйва - современность и динамика */
+.page {
+  background: #0a0e15;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(246, 92, 133, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(4, 124, 148, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(252, 150, 101, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: bgPulse 15s ease-in-out infinite;
+}
+
+@keyframes bgPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.main {
+  flex: 1;
+  background: transparent;
+  padding: 4rem 0 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+/* Заголовок формы */
+.formHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 3rem;
+  position: relative;
+}
+
+.formHeader::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FC9665, #F65C85, transparent);
+}
+
+.headerIcon {
+  color: #FC9665;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 20px rgba(252, 150, 101, 0.5));
+}
+
+.formHeader h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 0%, #FC9665 50%, #F65C85 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.formHeader p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Форма бронирования */
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.formSection {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  background: rgba(21, 25, 33, 0.6);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.formSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(252, 150, 101, 0.05), transparent);
+  transition: left 0.6s ease;
+}
+
+.formSection:hover::before {
+  left: 100%;
+}
+
+.formSection:hover {
+  box-shadow: 0 8px 40px rgba(246, 92, 133, 0.2);
+  border-color: rgba(252, 150, 101, 0.5);
+  transform: translateY(-2px);
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, #FC9665, #F65C85, transparent) 1;
+  padding-bottom: 0.75rem;
+  position: relative;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: #ffffff;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.label svg {
+  color: #FC9665;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(10, 14, 21, 0.8);
+  font-size: 1rem;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  color-scheme: dark;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #FC9665;
+  box-shadow: 0 0 0 4px rgba(252, 150, 101, 0.2), 0 0 20px rgba(252, 150, 101, 0.3);
+  background: rgba(10, 14, 21, 0.95);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Стили для календаря */
+.input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+.input[type="date"]::-webkit-datetime-edit {
+  color: #ffffff;
+}
+
+.input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  color: #ffffff;
+}
+
+.input[type="date"]::-webkit-datetime-edit-text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input[type="date"]::-webkit-datetime-edit-month-field,
+.input[type="date"]::-webkit-datetime-edit-day-field,
+.input[type="date"]::-webkit-datetime-edit-year-field {
+  color: #ffffff;
+}
+
+/* Стили для select */
+.input[type="date"],
+select.input {
+  cursor: pointer;
+  background-image: none;
+}
+
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FC9665' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+}
+
+select.input option {
+  background: #151921;
+  color: #ffffff;
+  padding: 0.5rem;
+}
+
+.inputError {
+  border-color: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2), 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.errorText {
+  font-size: 0.875rem;
+  color: #ff6b6b;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+}
+
+/* Карточки уровня опыта */
+.experienceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.experienceCard {
+  background: rgba(21, 25, 33, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.experienceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(252, 150, 101, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.experienceCard:hover::before {
+  opacity: 1;
+}
+
+.experienceCard:hover {
+  border-color: #FC9665;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(246, 92, 133, 0.3);
+}
+
+.experienceCardActive {
+  background: linear-gradient(135deg, #FC9665 0%, #F65C85 100%);
+  border-color: #FC9665;
+  color: #ffffff;
+  box-shadow: 0 8px 30px rgba(252, 150, 101, 0.5);
+}
+
+.experienceCardActive::before {
+  opacity: 0;
+}
+
+.experienceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.experienceLabel {
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.experienceCheck {
+  flex-shrink: 0;
+  color: #FC9665;
+}
+
+.experienceDesc {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+.experienceCardActive .experienceLabel,
+.experienceCardActive .experienceCheck,
+.experienceCardActive .experienceDesc {
+  color: #ffffff;
+}
+
+/* Кнопка отправки */
+.formActions {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem 4rem;
+  background: linear-gradient(135deg, #FC9665 0%, #F65C85 100%);
+  color: #ffffff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 0 8px 30px rgba(252, 150, 101, 0.5);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 100%, 0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.submitButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #F65C85 0%, #FC9665 100%);
+  transition: left 0.4s ease;
+  z-index: 0;
+}
+
+.submitButton:hover:not(:disabled)::before {
+  left: 0;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-4px) translateX(5px);
+  box-shadow: 0 15px 50px rgba(246, 92, 133, 0.6);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(-2px) translateX(2px);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submitButton > * {
+  position: relative;
+  z-index: 1;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Информационный блок */
+.infoBox {
+  background: rgba(4, 124, 148, 0.1);
+  border: 2px solid rgba(4, 124, 148, 0.3);
+  border-left: 4px solid #047C94;
+  padding: 2rem;
+  margin-top: 3rem;
+  display: flex;
+  gap: 1.5rem;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.infoBox::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(4, 124, 148, 0.3), transparent);
+  animation: infoGlow 4s ease-in-out infinite;
+}
+
+@keyframes infoGlow {
+  0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+  50% { transform: translate(-20px, 20px); opacity: 0.6; }
+}
+
+.infoIcon {
+  color: #047C94;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  filter: drop-shadow(0 0 10px rgba(4, 124, 148, 0.5));
+  position: relative;
+  z-index: 1;
+}
+
+.infoContent {
+  position: relative;
+  z-index: 1;
+}
+
+.infoContent h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.infoList li {
+  padding-left: 1.75rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.infoList li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #FC9665;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Страница успеха */
+.successContainer {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.successIcon {
+  color: #FC9665;
+  margin-bottom: 2rem;
+  animation: scaleIn 0.5s ease-out;
+  filter: drop-shadow(0 0 30px rgba(252, 150, 101, 0.6));
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.successTitle {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, #FC9665 50%, #F65C85 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.successText {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 3rem;
+}
+
+/* Детали бронирования */
+.bookingDetails {
+  background: rgba(21, 25, 33, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  margin: 3rem 0;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.bookingDetails::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FC9665, #F65C85, transparent);
+}
+
+.bookingDetails h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #FC9665, #F65C85, transparent) 1;
+  padding-bottom: 1rem;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.detailItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background: rgba(10, 14, 21, 0.5);
+  border-left: 3px solid #FC9665;
+  transition: all 0.3s ease;
+}
+
+.detailItem:hover {
+  background: rgba(10, 14, 21, 0.8);
+  transform: translateX(5px);
+}
+
+.detailIcon {
+  color: #FC9665;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  filter: drop-shadow(0 0 8px rgba(252, 150, 101, 0.5));
+}
+
+.detailItem > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detailLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.detailValue {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Действия успешной страницы */
+.successActions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.successActions::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FC9665, transparent);
+}
+
+.newBookingBtn,
+.catalogBtn {
+  padding: 1.25rem 2.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.newBookingBtn {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.newBookingBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+
+.newBookingBtn:hover::before {
+  left: 0;
+}
+
+.newBookingBtn:hover {
+  border-color: #FC9665;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(252, 150, 101, 0.3);
+}
+
+.catalogBtn {
+  background: linear-gradient(135deg, #FC9665 0%, #F65C85 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(252, 150, 101, 0.4);
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 100%, 0 100%);
+}
+
+.catalogBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #F65C85 0%, #FC9665 100%);
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+
+.catalogBtn:hover::before {
+  left: 0;
+}
+
+.catalogBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(246, 92, 133, 0.6);
+}
+
+.newBookingBtn > *,
+.catalogBtn > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .formHeader h1 {
+    font-size: 3rem;
+  }
+
+  .experienceGrid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 2rem 0 4rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .formHeader {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .formHeader h1 {
+    font-size: 2.25rem;
+  }
+
+  .formHeader p {
+    font-size: 1rem;
+  }
+
+  .headerIcon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .formSection {
+    padding: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .experienceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .successTitle {
+    font-size: 2rem;
+  }
+
+  .successText {
+    font-size: 1rem;
+  }
+
+  .successActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .newBookingBtn,
+  .catalogBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bookingDetails {
+    padding: 1.5rem;
+  }
+
+  .infoBox {
+    flex-direction: column;
+  }
+
+  .submitButton {
+    width: 100%;
+    padding: 1.125rem 2rem;
+  }
+}
