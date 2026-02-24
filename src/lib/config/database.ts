@@ -58,11 +58,11 @@ export const getDatabaseConfig = () => {
                       process.env.NEXT_PHASE === 'phase-export' ||
                       !process.env.NODE_ENV;
 
-  const POSTGRES_USER = getEnvVar(['POSTGRES_USER', 'DB_USER']);
+  const POSTGRES_USER = getEnvVar(['POSTGRES_USER', 'DB_USER', 'PGUSER']);
   const POSTGRES_PASSWORD = getEnvVar(['POSTGRES_PASSWORD', 'DB_PASSWORD']);
-  const POSTGRES_DATABASE = getEnvVar(['POSTGRES_DATABASE', 'DB_NAME']);
-  const POSTGRES_HOST = getEnvVar(['POSTGRES_HOST', 'DB_HOST']);
-  const POSTGRES_PORT = getEnvVar(['POSTGRES_PORT', 'DB_PORT']);
+  const POSTGRES_DATABASE = getEnvVar(['POSTGRES_DATABASE', 'DB_NAME', 'PGDATABASE']);
+  const POSTGRES_HOST = getEnvVar(['POSTGRES_HOST', 'DB_HOST', 'PGHOST']);
+  const POSTGRES_PORT = getEnvVar(['POSTGRES_PORT', 'DB_PORT', 'PGPORT']);
 
   // Во время сборки возвращаем заглушки
   if (isBuildTime) {
